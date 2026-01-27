@@ -1,108 +1,82 @@
 <!DOCTYPE html>
 <html lang="en" data-lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synverta B2B News Portal</title>
-    <meta name="description" content="Synverta B2B News Portal - Latest news, insights and updates from the chemical industry">
-    <link rel="stylesheet" href="/assets/css/style.css" />
+  <meta charset="UTF-8" />
+  <title>Synverta B2B News & Insights</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Synverta B2B platform news and insights, covering industry news, market insights, supply chain analysis, and technology applications." />
+  <link rel="stylesheet" href="/assets/css/style.css" />
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="/en/" class="logo">Synverta</a>
-            <nav>
-                <a href="/en/" class="active">Home</a>
-                <a href="/en/industry-news.html">Industry News</a>
-                <a href="/">中文</a>
-            </nav>
-        </div>
-    </header>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="/en/">Synverta</a>
+        <span class="logo-subtitle">B2B News & Insights</span>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/en/">Home</a></li>
+          <li><a href="/en/breaking-news.html">Industry News</a></li>
+          <li><a href="/en/market-insights.html">Market Insights</a></li>
+          <li><a href="/en/supply-chain-analysis.html">Supply Chain Analysis</a></li>
+          <li><a href="/en/technology-applications.html">Technology & Applications</a></li>
+          <li><a href="/en/companies-capacity.html">Companies & Capacity</a></li>
+          <li><a href="/en/industry-briefings.html">Industry Briefings</a></li>
+          <li><a href="/">中文</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
+  <main>
     <section class="hero">
-        <h1>Synverta B2B News Portal</h1>
-        <p>Latest Industry News, Market Insights & Product Updates</p>
+      <div class="container">
+        <div class="hero-content">
+          <h1>See Industrial Trends Through Data</h1>
+          <p>Covering industry news, market insights, supply chain analysis and technology applications to support B2B decision-making.</p>
+        </div>
+        <div class="hero-featured">
+          <h2>Featured</h2>
+          <ul id="featured-news-list"></ul>
+        </div>
+      </div>
     </section>
 
-    <main>
-        <!-- Latest News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">Live Updates</div>
-                    <h2 class="section-title">Latest News</h2>
-                </div>
-            </div>
-            <ul class="news-list" id="latest-news-list">
-                <!-- News items will be loaded here by news.js -->
-            </ul>
-        </section>
+    <section class="section-latest">
+      <div class="container">
+        <h2>Latest News</h2>
+        <ul id="latest-news-list" class="news-list"></ul>
+      </div>
+    </section>
 
-        <!-- Featured News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">Editor's Pick</div>
-                    <h2 class="section-title">Featured News</h2>
-                </div>
-            </div>
-            <ul class="news-list" id="featured-news-list">
-                <!-- Featured news items will be loaded here by news.js -->
-            </ul>
-        </section>
-
-        <!-- Industry News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">Plants · Capacity · Trade</div>
-                    <h2 class="section-title">Industry News</h2>
-                </div>
-            </div>
-            <ul class="news-list" id="home-industry-news-list">
-                <!-- Industry news items will be loaded here by news.js -->
-            </ul>
-            <a href="/en/industry-news.html" class="more-link">View More Industry News →</a>
-        </section>
-
-        <!-- Product News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">Features · Updates · Optimization</div>
-                    <h2 class="section-title">Product Updates</h2>
-                </div>
-            </div>
-            <ul class="news-list" id="home-product-news-list">
-                <!-- Product news items will be loaded here by news.js -->
-            </ul>
-        </section>
-
-        <!-- Company News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">Enterprise · Partnership · Development</div>
-                    <h2 class="section-title">Company News</h2>
-                </div>
-            </div>
-            <ul class="news-list" id="home-company-news-list">
-                <!-- Company news items will be loaded here by news.js -->
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 Synverta. All rights reserved.</p>
-            <p>
-                <a href="#">About Us</a> ·
-                <a href="#">Contact</a> ·
-                <a href="#">Privacy Policy</a>
-            </p>
+    <section class="section-categories">
+      <div class="container">
+        <div class="category-block">
+          <h2>Industry News</h2>
+          <ul id="home-breaking-news-list" class="news-list small"></ul>
+          <a href="/en/breaking-news.html" class="more-link">More industry news &raquo;</a>
         </div>
-    </footer>
 
-    <script src="/assets/js/news.js"></script>
+        <div class="category-block">
+          <h2>Market Insights</h2>
+          <ul id="home-market-insights-list" class="news-list small"></ul>
+          <a href="/en/market-insights.html" class="more-link">More market insights &raquo;</a>
+        </div>
+
+        <div class="category-block">
+          <h2>Supply Chain Analysis</h2>
+          <ul id="home-supply-chain-analysis-list" class="news-list small"></ul>
+          <a href="/en/supply-chain-analysis.html" class="more-link">More supply chain analysis &raquo;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <!-- 保持原样 -->
+  </footer>
+
+  <script src="/assets/js/news.js"></script>
 </body>
 </html>
