@@ -1,0 +1,6 @@
+title: Synverta新闻
+description: 最新B2B化学品资讯和行业动态
+author: Synverta
+timezone: Asia/Shanghai
+plugins:
+  - jekyll-feed
