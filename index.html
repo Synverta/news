@@ -1,15 +1,297 @@
----
-layout: default
-title: 新闻首页
----
-
-<h1>最新发布的新闻</h1>
-<ul>
-  {% for post in site.posts limit:10 %}
-    <li>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-      <small>{{ post.date | date: "%Y-%m-%d" }}</small>
-      <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-    </li>
-  {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synverta B2B News Portal</title>
+    <style>
+        :root {
+            --main-bg: #f6f8fa;
+            --header-bg: #ffffff;
+            --primary: #193769;
+            --accent: #1fa187;
+            --section-bg: #ffffff;
+            --section-border: #ececec;
+            --section-title: #193769;
+            --section-title-border: #1fa187;
+            --text: #212529;
+            --muted: #8a99b3;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'PingFang SC', sans-serif;
+            background: var(--main-bg);
+            color: var(--text);
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--header-bg);
+            padding: 18px 40px 18px 36px;
+            box-shadow: 0 2px 8px rgba(25,55,105,.04);
+        }
+        .logo {
+            font-size: 2.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+        .contact {
+            font-size: 1rem;
+            color: var(--muted);
+        }
+        .main-container {
+            max-width: 1280px;
+            margin: 36px auto;
+            display: flex;
+            gap: 32px;
+        }
+        nav {
+            min-width: 200px;
+        }
+        .nav-section {
+            background: var(--section-bg);
+            border-radius: 8px;
+            padding: 18px 24px;
+            border: 1px solid var(--section-border);
+            margin-bottom: 20px;
+        }
+        .nav-section-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--section-title-border);
+            padding-left: 8px;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-links li + li {
+            margin-top: 10px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+        }
+        .section-block {
+            background: var(--section-bg);
+            margin-bottom: 22px;
+            border-radius: 10px;
+            border: 1px solid var(--section-border);
+            box-shadow: 0 2px 8px rgba(31,161,135,.03);
+            padding: 28px 26px 16px 26px;
+        }
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--section-title-border);
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.32rem;
+            font-weight: bold;
+            color: var(--section-title);
+            letter-spacing: 1px;
+        }
+        .more-link {
+            font-size: 0.98rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .more-link:hover {
+            color: var(--accent);
+        }
+        .news-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .news-item {
+            padding: 0 0 14px 0;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed #f0f0f0;
+        }
+        .news-title {
+            font-size: 1.08rem;
+            color: var(--primary);
+            margin: 0 0 3px 0;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .news-title:hover {
+            color: var(--accent);
+        }
+        .news-meta {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+        .filters {
+            margin: 0 0 10px 0;
+        }
+        .filter-btn {
+            border: 1px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            border-radius: 5px;
+            padding: 4px 13px;
+            margin-right: 8px;
+            font-size: 0.98rem;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+        .filter-btn.selected,
+        .filter-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+        @media (max-width: 990px) {
+            .main-container { flex-direction: column; gap: 0; }
+            nav { min-width: 0; margin-bottom: 24px; }
+        }
+        @media (max-width: 600px) {
+            header { flex-direction: column; gap: 10px; padding: 14px; }
+            .main-container { margin: 16px 0; padding: 0 8px; }
+            .section-block { padding: 16px 6px 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Synverta&nbsp;News</div>
+        <div class="contact">Contact: <a href="mailto:contact@synverta.org">contact@synverta.org</a></div>
+    </header>
+    <div class="main-container">
+        <nav>
+            <div class="nav-section">
+                <div class="nav-section-title">News Sections</div>
+                <ul class="nav-links">
+                    <li><a class="active" href="#industry-news">Industry News</a></li>
+                    <li><a href="#market-insight">Market Insight</a></li>
+                    <li><a href="#company-watch">Company Watch</a></li>
+                    <li><a href="#supply-chain">Supply Chain</a></li>
+                    <li><a href="#regulation-compliance">Regulation & Compliance</a></li>
+                    <li><a href="#product-focus">Product Focus</a></li>
+                    <li><a href="#weekly-digest">Weekly Digest</a></li>
+                </ul>
+            </div>
+            <div class="nav-section" style="margin-top:12px;">
+                <div class="nav-section-title">Filters</div>
+                <div class="filters">
+                    <button class="filter-btn selected">All</button>
+                    <button class="filter-btn">China</button>
+                    <button class="filter-btn">Global</button>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <!-- 每个栏目区块，建议通过后端或JS自动渲染内容 -->
+            <section class="section-block" id="industry-news">
+                <div class="section-header">
+                    <div class="section-title">Industry News（行业快讯）</div>
+                    <a class="more-link" href="#">More &gt;</a>
+                </div>
+                <ul class="news-list">
+                    <!-- 后续用 JS 动态填充最新内容 -->
+                    <li class="news-item">
+                        <a class="news-title" href="#">装置开停/扩产/事故/政策/贸易流向头条示例</a>
+                        <div class="news-meta">2026-01-27&nbsp;&nbsp;|&nbsp;&nbsp;China</div>
+                    </li>
+                    <li class="news-item">
+                        <a class="news-title" href="#">新化工装置投产，或影响原料成本</a>
+                        <div class="news-meta">2026-01-26&nbsp;&nbsp;|&nbsp;&nbsp;Global</div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="market-insight">
+                <div class="section-header">
+                    <div class="section-title">Market Insight（市场解读）</div>
+                    <a class="more-link" href="#">More &gt;</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">供需、价差、替代品、成本曲线等短文示例</a>
+                        <div class="news-meta">2026-01-25&nbsp;&nbsp;|&nbsp;&nbsp;China</div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="company-watch">
+                <div class="section-header">
+                    <div class="section-title">Company Watch（公司动态）</div>
+                    <a class="more-link" href="#">More &gt;</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">住友、龙盛、巴斯夫等公司财报快讯示例</a>
+                        <div class="news-meta">2026-01-24&nbsp;&nbsp;|&nbsp;&nbsp;Global</div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="supply-chain">
+                <div class="section-header">
+                    <div class="section-title">Supply Chain（供应链与物流）</div>
+                    <a class="more-link" href="#">More &gt;</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">运价、港口、集装箱动态与分析示例</a>
+                        <div class="news-meta">2026-01-23&nbsp;&nbsp;|&nbsp;&nbsp;Global</div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="regulation-compliance">
+                <div class="section-header">
+                    <div class="section-title">Regulation & Compliance（法规合规）</div>
+                    <a class="more-link" href="#">More &gt;</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">REACH、TSCA、食品药典等法规更新示例</a>
+                        <div class="news-meta">2026-01-22&nbsp;&nbsp;|&nbsp;&nbsp;China</div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="product-focus">
+                <div class="section-header">
+                    <div class="section-title">Product Focus（产品聚焦）</div>
+                    <a class="more-link" href="#">More &gt;</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">某产品新闻自动关联跳转到对应产品页示例</a>
+                        <div class="news-meta">2026-01-21&nbsp;&nbsp;|&nbsp;&nbsp;China</div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="weekly-digest">
+                <div class="section-header">
+                    <div class="section-title">Weekly Digest（周报）</div>
+                    <a class="more-link" href="#">More &gt;</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">本周各栏目要闻速览...</a>
+                        <div class="news-meta">2026-01-20&nbsp;&nbsp;|&nbsp;&nbsp;Global</div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
