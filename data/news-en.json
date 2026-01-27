@@ -1,0 +1,32 @@
+[
+  {
+    "id": "2026-01-20-industry-report",
+    "title": "Chemical Plant Operating Rate and Capacity Expansion Analysis Report",
+    "category": "industry",
+    "date": "2026-01-20",
+    "summary": "This report provides an in-depth analysis of the operating rate changes of major PTA, MEG, and polyester plants in the Asia-Pacific region in Q1 2026, as well as the impact of new capacity on supply-demand balance. The report indicates that the concentrated commissioning of multiple large-scale plants will have a significant impact on the market landscape.",
+    "url": "/news/2026-01-20-industry-report-en.html",
+    "tags": ["PTA", "MEG", "Polyester", "Capacity Analysis"],
+    "featured": true
+  },
+  {
+    "id": "2026-01-10-new-feature",
+    "title": "Synverta Platform Launches Real-time Spread Monitoring Feature",
+    "category": "product",
+    "date": "2026-01-10",
+    "summary": "The Synverta B2B platform officially launched its real-time spread monitoring module, supporting users to customize monitoring of key spread indicators such as PX-PTA and PTA-MEG, and providing intelligent alert services. This feature will help enterprises seize arbitrage opportunities more timely.",
+    "url": "/news/2026-01-10-new-feature-en.html",
+    "tags": ["Product Update", "Spread Monitoring", "Smart Alerts"],
+    "featured": true
+  },
+  {
+    "id": "2025-12-15-partner-program",
+    "title": "Synverta Launches Strategic Partnership Program",
+    "category": "company",
+    "date": "2025-12-15",
+    "summary": "Synverta announced the launch of its Strategic Partnership Program, aimed at establishing deep cooperation with leading chemical companies, traders, and financial institutions in the industry. Partners will enjoy priority data access, customized analysis services, and other benefits.",
+    "url": "/news/2025-12-15-partner-program-en.html",
+    "tags": ["Partnership", "Strategic Cooperation", "Corporate News"],
+    "featured": false
+  }
+]
