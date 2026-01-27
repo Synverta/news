@@ -1,108 +1,86 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synverta B2B 新闻门户</title>
-    <meta name="description" content="Synverta B2B新闻门户，提供化工行业最新资讯、产品动态和公司新闻">
-    <link rel="stylesheet" href="/assets/css/style.css" />
+  <meta charset="UTF-8" />
+  <title>Synverta B2B 新闻资讯</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Synverta B2B 平台新闻与行业洞察，覆盖行业快讯、市场洞察、产业链分析与技术应用等内容。" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="/" class="logo">Synverta</a>
-            <nav>
-                <a href="/" class="active">首页</a>
-                <a href="/industry-news.html">行业资讯</a>
-                <a href="/en/">English</a>
-            </nav>
-        </div>
-    </header>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="/">Synverta</a>
+        <span class="logo-subtitle">B2B 新闻资讯</span>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/">首页</a></li>
+          <li><a href="/breaking-news.html">行业快讯</a></li>
+          <li><a href="/market-insights.html">市场洞察</a></li>
+          <li><a href="/supply-chain-analysis.html">产业链分析</a></li>
+          <li><a href="/technology-applications.html">技术与应用</a></li>
+          <li><a href="/companies-capacity.html">企业与产能</a></li>
+          <li><a href="/industry-briefings.html">行业简报</a></li>
+          <li><a href="/about.html">关于我们</a></li>
+          <li><a href="/en/">English</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
+  <main>
+    <!-- Hero / 焦点新闻保持你的原结构即可，只要 #featured-news-list 存在 -->
     <section class="hero">
-        <h1>Synverta B2B 新闻门户</h1>
-        <p>化工行业最新资讯、市场洞察与产品动态</p>
+      <div class="container">
+        <div class="hero-content">
+          <h1>洞察产业链，从数据看趋势</h1>
+          <p>围绕行业快讯、市场洞察、产业链分析与技术应用，为 B2B 企业提供可落地的决策参考。</p>
+        </div>
+        <div class="hero-featured">
+          <h2>焦点新闻</h2>
+          <ul id="featured-news-list"></ul>
+        </div>
+      </div>
     </section>
 
-    <main>
-        <!-- Latest News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">即时更新</div>
-                    <h2 class="section-title">最新动态</h2>
-                </div>
-            </div>
-            <ul class="news-list" id="latest-news-list">
-                <!-- News items will be loaded here by news.js -->
-            </ul>
-        </section>
+    <!-- 最新新闻 -->
+    <section class="section-latest">
+      <div class="container">
+        <h2>最新新闻</h2>
+        <ul id="latest-news-list" class="news-list"></ul>
+      </div>
+    </section>
 
-        <!-- Featured News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">编辑推荐</div>
-                    <h2 class="section-title">精选新闻</h2>
-                </div>
-            </div>
-            <ul class="news-list" id="featured-news-list">
-                <!-- Featured news items will be loaded here by news.js -->
-            </ul>
-        </section>
-
-        <!-- Industry News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">装置 · 产能 · 贸易</div>
-                    <h2 class="section-title">行业资讯</h2>
-                </div>
-            </div>
-            <ul class="news-list" id="home-industry-news-list">
-                <!-- Industry news items will be loaded here by news.js -->
-            </ul>
-            <a href="/industry-news.html" class="more-link">查看更多行业资讯 →</a>
-        </section>
-
-        <!-- Product News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">功能 · 更新 · 优化</div>
-                    <h2 class="section-title">产品动态</h2>
-                </div>
-            </div>
-            <ul class="news-list" id="home-product-news-list">
-                <!-- Product news items will be loaded here by news.js -->
-            </ul>
-        </section>
-
-        <!-- Company News Section -->
-        <section class="section">
-            <div class="section-header">
-                <div>
-                    <div class="section-kicker">企业 · 合作 · 发展</div>
-                    <h2 class="section-title">公司新闻</h2>
-                </div>
-            </div>
-            <ul class="news-list" id="home-company-news-list">
-                <!-- Company news items will be loaded here by news.js -->
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 Synverta. 保留所有权利。</p>
-            <p>
-                <a href="#">关于我们</a> ·
-                <a href="#">联系方式</a> ·
-                <a href="#">隐私政策</a>
-            </p>
+    <!-- 六大板块中的三个预览 -->
+    <section class="section-categories">
+      <div class="container">
+        <div class="category-block">
+          <h2>行业快讯</h2>
+          <ul id="home-breaking-news-list" class="news-list small"></ul>
+          <a href="/breaking-news.html" class="more-link">查看更多行业快讯 &raquo;</a>
         </div>
-    </footer>
 
-    <script src="/assets/js/news.js"></script>
+        <div class="category-block">
+          <h2>市场洞察</h2>
+          <ul id="home-market-insights-list" class="news-list small"></ul>
+          <a href="/market-insights.html" class="more-link">查看更多市场洞察 &raquo;</a>
+        </div>
+
+        <div class="category-block">
+          <h2>产业链分析</h2>
+          <ul id="home-supply-chain-analysis-list" class="news-list small"></ul>
+          <a href="/supply-chain-analysis.html" class="more-link">查看更多产业链分析 &raquo;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <!-- 保持原样即可 -->
+  </footer>
+
+  <script src="/assets/js/news.js"></script>
 </body>
 </html>
