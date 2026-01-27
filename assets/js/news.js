@@ -5,15 +5,27 @@
 let newsCache = null;
 
 /**
- * Fetch news data from JSON file
+ * Get current language from HTML data-lang attribute
+ */
+function getCurrentLanguage() {
+    const html = document.documentElement;
+    const lang = html.getAttribute('data-lang');
+    return lang === 'en' ? 'en' : 'zh'; // Default to 'zh' if not set or unrecognized
+}
+
+/**
+ * Fetch news data from JSON file based on current language
  */
 async function fetchNews() {
     if (newsCache) {
         return newsCache;
     }
 
+    const lang = getCurrentLanguage();
+    const jsonFile = `/data/news-${lang}.json`;
+
     try {
-        const response = await fetch('/data/news.json');
+        const response = await fetch(jsonFile);
         if (!response.ok) {
             throw new Error(`Failed to fetch news: ${response.status}`);
         }
@@ -70,24 +82,40 @@ function renderNewsItem(item) {
 }
 
 /**
- * Get category label in Chinese
+ * Get category label based on current language
  */
 function getCategoryLabel(category) {
+    const lang = getCurrentLanguage();
+    
     const labels = {
-        'industry': '行业资讯',
-        'product': '产品动态',
-        'company': '公司新闻'
+        'zh': {
+            'industry': '行业资讯',
+            'product': '产品动态',
+            'company': '公司新闻'
+        },
+        'en': {
+            'industry': 'Industry News',
+            'product': 'Product Updates',
+            'company': 'Company News'
+        }
     };
-    return labels[category] || category;
+    
+    return labels[lang][category] || category;
 }
 
 /**
  * Render news list to a container
  */
-function renderNewsList(containerId, items, emptyMessage = '该栏目暂时没有新闻。') {
+function renderNewsList(containerId, items, emptyMessage) {
     const container = document.getElementById(containerId);
     if (!container) {
         return;
+    }
+
+    // Use language-specific empty message if not provided
+    if (!emptyMessage) {
+        const lang = getCurrentLanguage();
+        emptyMessage = lang === 'en' ? 'No news in this category yet.' : '该栏目暂时没有新闻。';
     }
 
     if (!items || items.length === 0) {
@@ -108,15 +136,18 @@ async function initHomepage() {
         return;
     }
 
+    const lang = getCurrentLanguage();
     const sortedNews = sortNewsByDate(newsItems);
 
     // Render latest 5 news items
     const latest5 = sortedNews.slice(0, 5);
-    renderNewsList('latest-news-list', latest5, '暂无最新新闻。');
+    const latestEmptyMsg = lang === 'en' ? 'No news available yet.' : '暂无最新新闻。';
+    renderNewsList('latest-news-list', latest5, latestEmptyMsg);
 
     // Render up to 3 featured items
     const featured = sortedNews.filter(item => item.featured).slice(0, 3);
-    renderNewsList('featured-news-list', featured, '暂无精选新闻。');
+    const featuredEmptyMsg = lang === 'en' ? 'No featured news yet.' : '暂无焦点新闻。';
+    renderNewsList('featured-news-list', featured, featuredEmptyMsg);
 
     // Render latest 3 items for each category
     const categories = {
@@ -129,7 +160,7 @@ async function initHomepage() {
         const categoryItems = sortedNews
             .filter(item => item.category === category)
             .slice(0, 3);
-        renderNewsList(containerId, categoryItems, '该栏目暂时没有新闻。');
+        renderNewsList(containerId, categoryItems);
     }
 }
 
