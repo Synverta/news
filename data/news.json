@@ -1,0 +1,32 @@
+[
+  {
+    "id": "2026-01-20-industry-report",
+    "title": "化工装置开工率及产能扩张分析报告",
+    "category": "industry",
+    "date": "2026-01-20",
+    "summary": "本报告深度分析了2026年第一季度亚太地区主要PTA、MEG及聚酯装置的开工率变化，以及新增产能对供需平衡的影响。报告指出，多套大型装置集中投产将对市场格局产生重要影响。",
+    "url": "/news/2026-01-20-industry-report.html",
+    "tags": ["PTA", "MEG", "聚酯", "产能分析"],
+    "featured": true
+  },
+  {
+    "id": "2026-01-10-new-feature",
+    "title": "Synverta平台推出实时价差监控功能",
+    "category": "product",
+    "date": "2026-01-10",
+    "summary": "Synverta B2B平台正式上线实时价差监控模块，支持用户自定义监控PX-PTA、PTA-MEG等关键价差指标，并提供智能预警服务。该功能将帮助企业更及时地把握套利机会。",
+    "url": "/news/2026-01-10-new-feature.html",
+    "tags": ["产品更新", "价差监控", "智能预警"],
+    "featured": true
+  },
+  {
+    "id": "2025-12-15-partner-program",
+    "title": "Synverta启动战略合作伙伴计划",
+    "category": "company",
+    "date": "2025-12-15",
+    "summary": "Synverta宣布启动战略合作伙伴计划，旨在与行业领先的化工企业、贸易商及金融机构建立深度合作关系。合作伙伴将享有优先数据访问权、定制化分析服务等多项权益。",
+    "url": "/news/2025-12-15-partner-program.html",
+    "tags": ["合作伙伴", "战略合作", "企业动态"],
+    "featured": false
+  }
+]
