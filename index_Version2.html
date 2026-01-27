@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synverta B2B News Portal</title>
+    <style>
+        :root {
+            --main-bg: #f6f8fa;
+            --header-bg: #ffffff;
+            --primary: #193769;
+            --accent: #1fa187;
+            --section-bg: #ffffff;
+            --section-border: #ececec;
+            --section-title: #193769;
+            --section-title-border: #1fa187;
+            --text: #212529;
+            --muted: #8a99b3;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'PingFang SC', sans-serif;
+            background: var(--main-bg);
+            color: var(--text);
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--header-bg);
+            padding: 18px 40px 18px 36px;
+            box-shadow: 0 2px 8px rgba(25,55,105,.04);
+        }
+        .logo {
+            font-size: 2.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+        .header-right {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .language-switcher {
+            display: flex;
+            gap: 8px;
+        }
+        .lang-btn {
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            color: var(--accent);
+            background: #f0f8f6;
+            font-weight: 600;
+        }
+        .lang-btn:hover {
+            color: var(--accent);
+        }
+        .contact {
+            font-size: 1rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .contact a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .main-container {
+            max-width: 1280px;
+            margin: 36px auto;
+            display: flex;
+            gap: 32px;
+        }
+        nav {
+            min-width: 200px;
+        }
+        .nav-section {
+            background: var(--section-bg);
+            border-radius: 8px;
+            padding: 18px 24px;
+            border: 1px solid var(--section-border);
+            margin-bottom: 20px;
+        }
+        .nav-section-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--section-title-border);
+            padding-left: 8px;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-links li + li {
+            margin-top: 10px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+            font-weight: 500;
+        }
+        main {
+            flex: 1;
+        }
+        .section-block {
+            background: var(--section-bg);
+            margin-bottom: 22px;
+            border-radius: 10px;
+            border: 1px solid var(--section-border);
+            box-shadow: 0 2px 8px rgba(31,161,135,.03);
+            padding: 28px 26px 16px 26px;
+        }
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--section-title-border);
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.32rem;
+            font-weight: bold;
+            color: var(--section-title);
+            letter-spacing: 1px;
+        }
+        .more-link {
+            font-size: 0.98rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .more-link:hover {
+            color: var(--accent);
+        }
+        .news-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .news-item {
+            padding: 0 0 14px 0;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed #f0f0f0;
+        }
+        .news-title {
+            font-size: 1.08rem;
+            color: var(--primary);
+            margin: 0 0 3px 0;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .news-title:hover {
+            color: var(--accent);
+        }
+        .news-meta {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+        .filters {
+            margin: 0 0 10px 0;
+        }
+        .filter-btn {
+            border: 1px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            border-radius: 5px;
+            padding: 4px 13px;
+            margin-right: 8px;
+            font-size: 0.98rem;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+        .filter-btn.selected,
+        .filter-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+        @media (max-width: 990px) {
+            .main-container { flex-direction: column; gap: 0; }
+            nav { min-width: 0; margin-bottom: 24px; }
+        }
+        @media (max-width: 600px) {
+            header { flex-direction: column; gap: 10px; padding: 14px; }
+            .header-right { flex-direction: column; gap: 8px; }
+            .main-container { margin: 16px 0; padding: 0 8px; }
+            .section-block { padding: 16px 6px 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo" data-i18n="logo">Synverta News</div>
+        <div class="header-right">
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="en">English</button>
+                <span style="color: var(--muted);">|</span>
+                <button class="lang-btn" data-lang="zh">中文</button>
+            </div>
+            <div class="contact">
+                <span data-i18n="contact">Contact:</span>
+                <a href="mailto:contact@synverta.org" data-i18n="contact_email">contact@synverta.org</a>
+            </div>
+        </div>
+    </header>
+    <div class="main-container">
+        <nav>
+            <div class="nav-section">
+                <div class="nav-section-title" data-i18n="news_sections">News Sections</div>
+                <ul class="nav-links">
+                    <li><a class="active" href="#industry-news" data-i18n="industry_news">Industry News</a></li>
+                    <li><a href="#market-insight" data-i18n="market_insight">Market Insight</a></li>
+                    <li><a href="#company-watch" data-i18n="company_watch">Company Watch</a></li>
+                    <li><a href="#supply-chain" data-i18n="supply_chain">Supply Chain</a></li>
+                    <li><a href="#regulation-compliance" data-i18n="regulation_compliance">Regulation & Compliance</a></li>
+                    <li><a href="#product-focus" data-i18n="product_focus">Product Focus</a></li>
+                    <li><a href="#weekly-digest" data-i18n="weekly_digest">Weekly Digest</a></li>
+                </ul>
+            </div>
+            <div class="nav-section" style="margin-top:12px;">
+                <div class="nav-section-title" data-i18n="filters">Filters</div>
+                <div class="filters">
+                    <button class="filter-btn selected" data-i18n="all">All</button>
+                    <button class="filter-btn" data-i18n="china">China</button>
+                    <button class="filter-btn" data-i18n="global">Global</button>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <section class="section-block" id="industry-news">
+                <div class="section-header">
+                    <div class="section-title" data-i18n="industry_news">Industry News</div>
+                    <a class="more-link" href="#" data-i18n="more">More</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">装置开停/扩产/事故/政策/贸易流向头条示例</a>
+                        <div class="news-meta">2026-01-27&nbsp;&nbsp;|&nbsp;&nbsp;<span data-i18n="china">China</span></div>
+                    </li>
+                    <li class="news-item">
+                        <a class="news-title" href="#">新化工装置投产，或影响原料成本</a>
+                        <div class="news-meta">2026-01-26&nbsp;&nbsp;|&nbsp;&nbsp;<span data-i18n="global">Global</span></div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="market-insight">
+                <div class="section-header">
+                    <div class="section-title" data-i18n="market_insight">Market Insight</div>
+                    <a class="more-link" href="#" data-i18n="more">More</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">供需、价差、替代品、成本曲线等短文示例</a>
+                        <div class="news-meta">2026-01-25&nbsp;&nbsp;|&nbsp;&nbsp;<span data-i18n="china">China</span></div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="company-watch">
+                <div class="section-header">
+                    <div class="section-title" data-i18n="company_watch">Company Watch</div>
+                    <a class="more-link" href="#" data-i18n="more">More</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">住友、龙盛、巴斯夫等公司财报快讯示例</a>
+                        <div class="news-meta">2026-01-24&nbsp;&nbsp;|&nbsp;&nbsp;<span data-i18n="global">Global</span></div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="supply-chain">
+                <div class="section-header">
+                    <div class="section-title" data-i18n="supply_chain">Supply Chain</div>
+                    <a class="more-link" href="#" data-i18n="more">More</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">运价、港口、集装箱动态与分析示例</a>
+                        <div class="news-meta">2026-01-23&nbsp;&nbsp;|&nbsp;&nbsp;<span data-i18n="global">Global</span></div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="regulation-compliance">
+                <div class="section-header">
+                    <div class="section-title" data-i18n="regulation_compliance">Regulation & Compliance</div>
+                    <a class="more-link" href="#" data-i18n="more">More</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">REACH、TSCA、食品药典等法规更新示例</a>
+                        <div class="news-meta">2026-01-22&nbsp;&nbsp;|&nbsp;&nbsp;<span data-i18n="china">China</span></div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="product-focus">
+                <div class="section-header">
+                    <div class="section-title" data-i18n="product_focus">Product Focus</div>
+                    <a class="more-link" href="#" data-i18n="more">More</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">某产品新闻自动关联跳转到对应产品页示例</a>
+                        <div class="news-meta">2026-01-21&nbsp;&nbsp;|&nbsp;&nbsp;<span data-i18n="china">China</span></div>
+                    </li>
+                </ul>
+            </section>
+            <section class="section-block" id="weekly-digest">
+                <div class="section-header">
+                    <div class="section-title" data-i18n="weekly_digest">Weekly Digest</div>
+                    <a class="more-link" href="#" data-i18n="more">More</a>
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <a class="news-title" href="#">本周各栏目要闻速览...</a>
+                        <div class="news-meta">2026-01-20&nbsp;&nbsp;|&nbsp;&nbsp;<span data-i18n="global">Global</span></div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const translations = {};
+        let currentLanguage = localStorage.getItem('language') || 'en';
+
+        // 加载翻译文件
+        async function loadLanguage(lang) {
+            try {
+                const response = await fetch(`./lang/${lang}.json`);
+                const data = await response.json();
+                translations[lang] = data;
+                return data;
+            } catch (error) {
+                console.error(`Failed to load language ${lang}:`, error);
+                return {};
+            }
+        }
+
+        // 更新页面文本
+        function updatePageLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // 更新语言按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // 保存语言偏好
+            localStorage.setItem('language', lang);
+            currentLanguage = lang;
+        }
+
+        // 初始化
+        async function init() {
+            // 加载所有支持的语言
+            await loadLanguage('en');
+            await loadLanguage('zh');
+
+            // 设置当前语言
+            updatePageLanguage(currentLanguage);
+
+            // 语言切换按钮事件
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    updatePageLanguage(lang);
+                });
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
