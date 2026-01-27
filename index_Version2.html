@@ -1,0 +1,1459 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synverta B2B News Portal</title>
+    <style>
+        :root {
+            --bg-page: #f5f7fb;
+            --bg-header: #ffffff;
+            --bg-header-accent: #0f172a;
+            --bg-main: #f9fafb;
+            --bg-card: #ffffff;
+            --bg-badge: #eff6ff;
+            --bg-tag: #e0f2fe;
+            --bg-footer: #020617;
+
+            --primary: #1e293b;
+            --secondary: #334155;
+            --accent: #2563eb;
+            --accent-soft: #dbeafe;
+            --accent-strong: #1d4ed8;
+            --muted: #6b7280;
+            --border-subtle: #e5e7eb;
+            --border-strong: #d1d5db;
+
+            --headline: #0f172a;
+            --danger: #b91c1c;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+            background: radial-gradient(circle at top left, #eff6ff 0, #f5f7fb 45%, #f9fafb 100%);
+            color: var(--primary);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* ======= TOP STRIP ======= */
+        .top-strip {
+            background: #020617;
+            color: #9ca3af;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 6px 24px;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+        }
+        .top-strip span {
+            max-width: 1280px;
+            width: 100%;
+        }
+
+        /* ======= HEADER ======= */
+        header {
+            background: linear-gradient(90deg, #020617 0%, #020617 42%, #0b1120 100%);
+            color: #e5e7eb;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px 24px 14px 24px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            column-gap: 28px;
+        }
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 11px;
+            background: radial-gradient(circle at 20% 20%, #38bdf8, #1d4ed8 48%, #0b1120 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #eff6ff;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.6), 0 8px 20px rgba(15, 23, 42, 0.85);
+        }
+        .logo-text-main {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #f9fafb;
+        }
+        .logo-text-sub {
+            font-size: 0.78rem;
+            color: #9ca3af;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-top: 3px;
+        }
+
+        .header-middle {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .primary-nav {
+            display: flex;
+            gap: 16px;
+            font-size: 0.86rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+        }
+        .primary-nav a {
+            position: relative;
+            padding-bottom: 4px;
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.18s, opacity 0.18s;
+            opacity: 0.92;
+            white-space: nowrap;
+        }
+        .primary-nav a:hover {
+            color: #e5e7eb;
+            opacity: 1;
+        }
+        .primary-nav a.active {
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+        .primary-nav a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(to right, #38bdf8, #4f46e5);
+        }
+
+        .header-right {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.7);
+            box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.2);
+        }
+        .lang-btn {
+            border: none;
+            background: transparent;
+            color: #9ca3af;
+            font-size: 0.78rem;
+            cursor: pointer;
+            padding: 2px 11px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            transition: all 0.18s;
+        }
+        .lang-btn.active {
+            background: radial-gradient(circle at 10% 0, #38bdf8, #4f46e5 60%, #1d4ed8 100%);
+            color: #f9fafb;
+            box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.9);
+        }
+        .lang-btn:hover:not(.active) {
+            color: #e5e7eb;
+        }
+        .language-divider {
+            width: 1px;
+            height: 16px;
+            background: rgba(148, 163, 184, 0.5);
+        }
+
+        .contact {
+            font-size: 0.8rem;
+            color: #a1a1aa;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .contact strong {
+            font-weight: 500;
+            color: #e5e7eb;
+        }
+        .contact a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* ======= MAIN LAYOUT ======= */
+        .page-shell {
+            max-width: 1280px;
+            margin: 18px auto 40px auto;
+            padding: 0 24px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 22px;
+            margin-bottom: 26px;
+        }
+
+        .hero-main {
+            background: radial-gradient(circle at top left, #ffffff 0%, #eef2ff 55%, #e0f2fe 100%);
+            border-radius: 18px;
+            padding: 16px 20px 18px 20px;
+            box-shadow: 0 18px 40px rgba(148, 163, 184, 0.35);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.85);
+            color: #e5e7eb;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            padding: 4px 12px 4px 5px;
+            margin-bottom: 10px;
+        }
+        .hero-kicker-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 30%, #22c55e, #15803d 75%, #052e16 100%);
+            box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.4);
+        }
+
+        .hero-title {
+            font-size: 1.5rem;
+            line-height: 1.35;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: var(--headline);
+            margin: 2px 0 8px 0;
+        }
+
+        .hero-meta {
+            font-size: 0.85rem;
+            color: #6b7280;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .hero-meta span.badge {
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.03);
+            padding: 2px 10px;
+            font-size: 0.8rem;
+        }
+
+        .hero-summary {
+            font-size: 0.9rem;
+            color: #4b5563;
+            max-width: 90%;
+            margin-bottom: 16px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .hero-primary-btn {
+            border: none;
+            background: linear-gradient(to right, #2563eb, #4f46e5);
+            color: #f9fafb;
+            padding: 7px 15px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4);
+            transition: transform 0.14s, box-shadow 0.14s, filter 0.14s;
+        }
+        .hero-primary-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 28px rgba(79, 70, 229, 0.5);
+            filter: brightness(1.05);
+        }
+        .hero-primary-btn span.arrow {
+            font-size: 0.9rem;
+        }
+        .hero-secondary-link {
+            font-size: 0.8rem;
+            color: #1e40af;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .hero-secondary-link:hover {
+            text-decoration: underline;
+        }
+
+        .hero-bg-orbit {
+            position: absolute;
+            right: -18px;
+            top: -40px;
+            width: 210px;
+            height: 210px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.9), rgba(79, 70, 229, 0.95) 55%, rgba(15, 23, 42, 1) 100%);
+            opacity: 0.14;
+            filter: blur(1px);
+        }
+        .hero-bg-ring {
+            position: absolute;
+            right: 36px;
+            top: 18px;
+            width: 120px;
+            height: 120px;
+            border-radius: 999px;
+            border: 1px dashed rgba(37, 99, 235, 0.6);
+            box-shadow: 0 0 0 1px rgba(191, 219, 254, 0.4);
+        }
+
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .hero-ticker-card {
+            background: rgba(15, 23, 42, 0.96);
+            color: #e5e7eb;
+            border-radius: 16px;
+            padding: 10px 14px;
+            box-shadow: 0 18px 36px rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(75, 85, 99, 0.7);
+            font-size: 0.78rem;
+        }
+        .ticker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .ticker-label {
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.7rem;
+            color: #9ca3af;
+        }
+        .ticker-badge {
+            border-radius: 999px;
+            padding: 2px 8px;
+            background: rgba(22, 163, 74, 0.14);
+            color: #bbf7d0;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+        .ticker-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+        }
+        .ticker-row + .ticker-row {
+            border-top: 1px dashed rgba(75, 85, 99, 0.8);
+        }
+        .ticker-symbol {
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+        .ticker-desc {
+            color: #9ca3af;
+            font-size: 0.74rem;
+        }
+        .ticker-change {
+            font-weight: 500;
+            font-size: 0.78rem;
+            color: #4ade80;
+        }
+        .ticker-change.negative {
+            color: #fb7185;
+        }
+
+        .hero-tagline-card {
+            background: rgba(15, 23, 42, 0.05);
+            border-radius: 14px;
+            padding: 12px 14px;
+            border: 1px dashed rgba(148, 163, 184, 0.7);
+            font-size: 0.76rem;
+            color: #4b5563;
+        }
+        .hero-tagline-title {
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.7rem;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+        .hero-tagline-main {
+            font-size: 0.85rem;
+            color: #0f172a;
+        }
+
+        /* ======= CONTENT LAYOUT ======= */
+        .content-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1.7fr) minmax(0, 1.3fr);
+            gap: 22px;
+        }
+
+        /* LEFT NAV / FILTERS */
+        nav {
+            position: relative;
+            z-index: 1;
+        }
+        .nav-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 14px 14px 12px 14px;
+            border: 1px solid rgba(209, 213, 219, 0.8);
+            box-shadow: 0 10px 28px rgba(148, 163, 184, 0.3);
+            margin-bottom: 14px;
+        }
+        .nav-title {
+            font-size: 0.86rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #6b7280;
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+        }
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li + li {
+            margin-top: 4px;
+        }
+        .nav-links a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            font-size: 0.86rem;
+            color: #4b5563;
+            padding: 6px 7px;
+            border-radius: 8px;
+            transition: background 0.14s, color 0.14s, transform 0.08s;
+        }
+        .nav-links a span.count {
+            font-size: 0.74rem;
+            color: #9ca3af;
+        }
+        .nav-links a:hover {
+            background: #f3f4ff;
+            color: #1d4ed8;
+            transform: translateX(1px);
+        }
+        .nav-links a.active {
+            background: #1d4ed8;
+            color: #e5e7eb;
+        }
+        .nav-links a.active span.count {
+            color: #c7d2fe;
+        }
+
+        .filter-card {
+            background: #020617;
+            border-radius: 14px;
+            padding: 10px 12px 12px 12px;
+            color: #e5e7eb;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
+        }
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .filter-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #9ca3af;
+        }
+        .filter-reset {
+            border: none;
+            background: transparent;
+            color: #9ca3af;
+            font-size: 0.72rem;
+            cursor: pointer;
+            text-decoration: underline dotted;
+        }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .filter-btn {
+            border: 1px solid rgba(148, 163, 184, 0.8);
+            background: transparent;
+            color: #e5e7eb;
+            border-radius: 999px;
+            padding: 3px 11px;
+            font-size: 0.76rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.08s;
+        }
+        .filter-btn.selected {
+            background: linear-gradient(to right, #4f46e5, #0ea5e9);
+            border-color: transparent;
+            color: #f9fafb;
+            box-shadow: 0 10px 26px rgba(59, 130, 246, 0.7);
+        }
+        .filter-btn:hover {
+            transform: translateY(-0.5px);
+            border-color: #e5e7eb;
+        }
+
+        /* MAIN COLUMN */
+        main {
+            min-width: 0;
+        }
+
+        .section-block {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 14px 34px rgba(148, 163, 184, 0.32);
+            margin-bottom: 16px;
+            padding: 13px 14px 10px 14px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .section-title-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+        .section-kicker {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.17em;
+            color: #9ca3af;
+            margin-bottom: 2px;
+        }
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--headline);
+            letter-spacing: 0.04em;
+        }
+        .section-title span.dot {
+            display: inline-block;
+            margin-left: 6px;
+            width: 5px;
+            height: 5px;
+            border-radius: 999px;
+            background: #22c55e;
+        }
+
+        .section-meta {
+            font-size: 0.74rem;
+            color: #9ca3af;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-meta span.pill {
+            border-radius: 999px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 2px 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .more-link {
+            font-size: 0.78rem;
+            color: #1d4ed8;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .more-link:hover {
+            text-decoration: underline;
+        }
+
+        .news-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .news-item {
+            padding: 7px 0 7px 0;
+            border-top: 1px solid rgba(229, 231, 235, 0.9);
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
+            column-gap: 16px;
+            row-gap: 2px;
+        }
+        .news-item:first-child {
+            border-top: none;
+            padding-top: 2px;
+        }
+
+        .news-title {
+            font-size: 0.92rem;
+            line-height: 1.4;
+            color: #111827;
+            margin: 0 0 3px 0;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.18s, transform 0.08s;
+        }
+        .news-title:hover {
+            color: #1d4ed8;
+            transform: translateX(1px);
+        }
+
+        .news-meta {
+            color: #6b7280;
+            font-size: 0.76rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .news-tag {
+            font-size: 0.72rem;
+            padding: 1px 8px;
+            border-radius: 999px;
+            border: 1px solid #bfdbfe;
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .news-summary {
+            font-size: 0.82rem;
+            color: #4b5563;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        /* RIGHT COLUMN: SIDEBARS */
+        .sidebar {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .sidebar-card {
+            background: #020617;
+            color: #e5e7eb;
+            border-radius: 16px;
+            padding: 10px 13px 12px 13px;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.9);
+        }
+        .sidebar-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .sidebar-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #9ca3af;
+        }
+        .sidebar-tag {
+            font-size: 0.68rem;
+            padding: 1px 7px;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.12);
+            color: #bfdbfe;
+        }
+        .sidebar-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar-item {
+            padding: 6px 0;
+            border-top: 1px dashed rgba(55, 65, 81, 0.9);
+        }
+        .sidebar-item:first-child {
+            border-top: none;
+            padding-top: 2px;
+        }
+        .sidebar-link {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: block;
+        }
+        .sidebar-link:hover {
+            text-decoration: underline;
+        }
+        .sidebar-meta {
+            font-size: 0.7rem;
+            color: #9ca3af;
+            margin-top: 2px;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 34px;
+            padding: 16px 24px 22px 24px;
+            background: #020617;
+            color: #6b7280;
+            border-top: 1px solid rgba(31, 41, 55, 0.9);
+        }
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            font-size: 0.76rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .footer-inner a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+        .footer-inner a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .content-layout {
+                grid-template-columns: 220px minmax(0, 1.9fr);
+                grid-template-rows: auto auto;
+                grid-template-areas:
+                    "left main"
+                    "left right";
+            }
+            nav {
+                grid-area: left;
+            }
+            main {
+                grid-area: main;
+            }
+            .sidebar {
+                grid-area: right;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .header-inner {
+                grid-template-columns: 1fr;
+                row-gap: 10px;
+            }
+            .header-middle {
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+            .primary-nav {
+                flex-wrap: wrap;
+                row-gap: 6px;
+            }
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .hero-main {
+                order: 1;
+            }
+            .hero-side {
+                order: 2;
+            }
+            .hero-summary {
+                max-width: 100%;
+            }
+            .content-layout {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "left"
+                    "main"
+                    "right";
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-shell {
+                padding: 0 14px;
+            }
+            .top-strip {
+                padding: 6px 14px;
+            }
+            .hero-main {
+                padding: 14px 12px 14px 12px;
+                border-radius: 14px;
+            }
+            .hero-title {
+                font-size: 1.25rem;
+            }
+            .hero-bg-orbit,
+            .hero-bg-ring {
+                display: none;
+            }
+            .content-layout {
+                gap: 12px;
+            }
+            .section-block {
+                padding: 11px 10px 8px 10px;
+                border-radius: 14px;
+            }
+            .news-item {
+                grid-template-columns: 1fr;
+            }
+            .header-inner {
+                padding: 12px 14px 10px 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .primary-nav {
+                display: none;
+            }
+            .hero-kicker {
+                font-size: 0.72rem;
+            }
+            .hero-primary-btn {
+                padding-inline: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top info strip -->
+    <div class="top-strip">
+        <span data-i18n="top_strip">Daily curated chemical & materials industry intelligence · China & Global</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <div class="logo-block">
+                <div class="logo-mark" aria-hidden="true">S</div>
+                <div>
+                    <div class="logo-text-main" data-i18n="logo">Synverta News</div>
+                    <div class="logo-text-sub" data-i18n="logo_sub">B2B Chemical · Materials · Supply Chain</div>
+                </div>
+            </div>
+
+            <div class="header-middle">
+                <nav class="primary-nav" aria-label="Primary">
+                    <a href="#industry-news" class="active" data-i18n="nav_top">Top Stories</a>
+                    <a href="#market-insight" data-i18n="market_insight">Market Insight</a>
+                    <a href="#company-watch" data-i18n="company_watch">Company Watch</a>
+                    <a href="#supply-chain" data-i18n="supply_chain">Supply Chain</a>
+                    <a href="#regulation-compliance" data-i18n="regulation_compliance">Regulation & Compliance</a>
+                    <a href="#weekly-digest" data-i18n="weekly_digest">Weekly Digest</a>
+                </nav>
+            </div>
+
+            <div class="header-right">
+                <div class="language-switcher" aria-label="Language">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <div class="language-divider"></div>
+                    <button class="lang-btn" data-lang="zh">中文</button>
+                </div>
+                <div class="contact">
+                    <strong data-i18n="contact">Contact</strong>
+                    <span>·</span>
+                    <a href="mailto:contact@synverta.org" data-i18n="contact_email">contact@synverta.org</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-shell">
+        <!-- Hero -->
+        <section class="hero" aria-labelledby="hero-headline">
+            <div class="hero-main">
+                <div class="hero-bg-orbit"></div>
+                <div class="hero-bg-ring"></div>
+
+                <div class="hero-kicker">
+                    <span class="hero-kicker-dot"></span>
+                    <span data-i18n="hero_kicker">Live brief · Asia & Global</span>
+                </div>
+                <h1 class="hero-title" id="hero-headline" data-i18n="hero_title">
+                    装置开停 / 扩产 / 事故 / 政策 / 贸易流向 —— 今日头条示例
+                </h1>
+                <div class="hero-meta">
+                    <span class="badge">
+                        <span data-i18n="industry_news">Industry News</span>
+                    </span>
+                    <span>2026-01-27</span>
+                    <span>·</span>
+                    <span data-i18n="china">China</span>
+                </div>
+                <p class="hero-summary" data-i18n="hero_summary">
+                    跟踪化工与材料产业链的关键装置动向、进出口结构变化与政策信号，帮助买卖双方识别价格拐点与供应风险。本段为示例摘要文案。
+                </p>
+                <div class="hero-actions">
+                    <button class="hero-primary-btn">
+                        <span data-i18n="hero_read_full">Read full briefing</span>
+                        <span class="arrow">↗</span>
+                    </button>
+                    <a href="#weekly-digest" class="hero-secondary-link">
+                        <span data-i18n="hero_view_digest">View this week’s digest</span> →
+                    </a>
+                </div>
+            </div>
+
+            <aside class="hero-side" aria-label="Market snapshot">
+                <div class="hero-ticker-card">
+                    <div class="ticker-header">
+                        <div class="ticker-label" data-i18n="ticker_label">Feedstock & Freight Snapshot</div>
+                        <div class="ticker-badge" data-i18n="ticker_live">Updated</div>
+                    </div>
+                    <div class="ticker-row">
+                        <div>
+                            <div class="ticker-symbol">PX CFR China</div>
+                            <div class="ticker-desc" data-i18n="ticker_px">Aromatics feedstock benchmark</div>
+                        </div>
+                        <div class="ticker-change">+12</div>
+                    </div>
+                    <div class="ticker-row">
+                        <div>
+                            <div class="ticker-symbol">Container FEU</div>
+                            <div class="ticker-desc" data-i18n="ticker_freight">Asia–Europe mainlane</div>
+                        </div>
+                        <div class="ticker-change negative">-3.5%</div>
+                    </div>
+                    <div class="ticker-row">
+                        <div>
+                            <div class="ticker-symbol">Brent</div>
+                            <div class="ticker-desc" data-i18n="ticker_brent">Crude reference</div>
+                        </div>
+                        <div class="ticker-change">+0.8%</div>
+                    </div>
+                </div>
+                <div class="hero-tagline-card">
+                    <div class="hero-tagline-title" data-i18n="hero_tagline_title">About Synverta News</div>
+                    <div class="hero-tagline-main" data-i18n="hero_tagline_main">
+                        面向 B2B 的多语言情报流：装置、价格、监管与企业动态，一页掌握上游到终端的关键信息。
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- Main content layout -->
+        <div class="content-layout">
+            <!-- Left nav and filters -->
+            <nav aria-label="Sections">
+                <div class="nav-card">
+                    <div class="nav-title" data-i18n="news_sections">News Sections</div>
+                    <ul class="nav-links">
+                        <li>
+                            <a class="active" href="#industry-news">
+                                <span data-i18n="industry_news">Industry News</span>
+                                <span class="count">2</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#market-insight">
+                                <span data-i18n="market_insight">Market Insight</span>
+                                <span class="count">1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#company-watch">
+                                <span data-i18n="company_watch">Company Watch</span>
+                                <span class="count">1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#supply-chain">
+                                <span data-i18n="supply_chain">Supply Chain</span>
+                                <span class="count">1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#regulation-compliance">
+                                <span data-i18n="regulation_compliance">Regulation & Compliance</span>
+                                <span class="count">1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#product-focus">
+                                <span data-i18n="product_focus">Product Focus</span>
+                                <span class="count">1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#weekly-digest">
+                                <span data-i18n="weekly_digest">Weekly Digest</span>
+                                <span class="count">1</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="filter-card">
+                    <div class="filter-header">
+                        <div class="filter-title" data-i18n="filters">Filters</div>
+                        <button class="filter-reset" data-i18n="filter_reset">Reset</button>
+                    </div>
+                    <div class="filters">
+                        <button class="filter-btn selected" data-i18n="all">All</button>
+                        <button class="filter-btn" data-i18n="china">China</button>
+                        <button class="filter-btn" data-i18n="global">Global</button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Center column: main sections -->
+            <main>
+                <section class="section-block" id="industry-news">
+                    <div class="section-header">
+                        <div class="section-title-wrap">
+                            <div class="section-kicker" data-i18n="kicker_industry">Macro · Plants · Trade Flows</div>
+                            <div class="section-title" data-i18n="industry_news">
+                                Industry News<span class="dot"></span>
+                            </div>
+                        </div>
+                        <div class="section-meta">
+                            <span class="pill" data-i18n="section_today">Today</span>
+                        </div>
+                    </div>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <div>
+                                <a class="news-title" href="#">
+                                    装置开停 / 扩产 / 事故 / 政策 / 贸易流向头条示例
+                                </a>
+                                <div class="news-meta">
+                                    <span>2026-01-27</span>
+                                    <span>·</span>
+                                    <span class="news-tag" data-i18n="china">China</span>
+                                </div>
+                            </div>
+                            <div class="news-summary">
+                                跟踪 PTA、聚酯及相关中间体装置的开停与负荷调整，以及配套港口和关税政策变化。本条为展示用途示例。
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <div>
+                                <a class="news-title" href="#">
+                                    新化工装置投产，或影响原料成本
+                                </a>
+                                <div class="news-meta">
+                                    <span>2026-01-26</span>
+                                    <span>·</span>
+                                    <span class="news-tag" data-i18n="global">Global</span>
+                                </div>
+                            </div>
+                            <div class="news-summary">
+                                某海外大型一体化项目投产，涉及芳烃链多个关键产品，对中国进口结构与区域价差形成边际影响。
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="more-link" href="#" data-i18n="more">
+                        More headlines →
+                    </a>
+                </section>
+
+                <section class="section-block" id="market-insight">
+                    <div class="section-header">
+                        <div class="section-title-wrap">
+                            <div class="section-kicker" data-i18n="kicker_market">Spreads · Curves · Substitutes</div>
+                            <div class="section-title" data-i18n="market_insight">Market Insight</div>
+                        </div>
+                        <div class="section-meta">
+                            <span>2026-01-25</span>
+                        </div>
+                    </div>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <div>
+                                <a class="news-title" href="#">
+                                    供需、价差、替代品、成本曲线等短文示例
+                                </a>
+                                <div class="news-meta">
+                                    <span>2026-01-25</span>
+                                    <span>·</span>
+                                    <span class="news-tag" data-i18n="china">China</span>
+                                </div>
+                            </div>
+                            <div class="news-summary">
+                                对某条化工产品链的裂解价差、长单与现货价差、以及原料与替代品之间的成本曲线进行示例性解读。
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="more-link" href="#" data-i18n="more">
+                        More insight →
+                    </a>
+                </section>
+
+                <section class="section-block" id="company-watch">
+                    <div class="section-header">
+                        <div class="section-title-wrap">
+                            <div class="section-kicker" data-i18n="kicker_company">Earnings · M&amp;A · Strategy</div>
+                            <div class="section-title" data-i18n="company_watch">Company Watch</div>
+                        </div>
+                        <div class="section-meta">
+                            <span>2026-01-24</span>
+                        </div>
+                    </div>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <div>
+                                <a class="news-title" href="#">
+                                    住友、龙盛、巴斯夫等公司财报快讯示例
+                                </a>
+                                <div class="news-meta">
+                                    <span>2026-01-24</span>
+                                    <span>·</span>
+                                    <span class="news-tag" data-i18n="global">Global</span>
+                                </div>
+                            </div>
+                            <div class="news-summary">
+                                汇总头部化工公司财报中的产能投放、品类组合调整与区域布局变化，突出对上下游客户的潜在影响。
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="more-link" href="#" data-i18n="more">
+                        More company moves →
+                    </a>
+                </section>
+
+                <section class="section-block" id="supply-chain">
+                    <div class="section-header">
+                        <div class="section-title-wrap">
+                            <div class="section-kicker" data-i18n="kicker_supply">Freight · Ports · Inventory</div>
+                            <div class="section-title" data-i18n="supply_chain">Supply Chain</div>
+                        </div>
+                        <div class="section-meta">
+                            <span>2026-01-23</span>
+                        </div>
+                    </div>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <div>
+                                <a class="news-title" href="#">
+                                    运价、港口、集装箱动态与分析示例
+                                </a>
+                                <div class="news-meta">
+                                    <span>2026-01-23</span>
+                                    <span>·</span>
+                                    <span class="news-tag" data-i18n="global">Global</span>
+                                </div>
+                            </div>
+                            <div class="news-summary">
+                                选取关键航线的运价指数与港口拥堵情况，演示如何将运输端变量纳入现货与长单采购节奏判断。
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="more-link" href="#" data-i18n="more">
+                        More supply chain updates →
+                    </a>
+                </section>
+
+                <section class="section-block" id="regulation-compliance">
+                    <div class="section-header">
+                        <div class="section-title-wrap">
+                            <div class="section-kicker" data-i18n="kicker_regulation">REACH · TSCA · Pharmacopeia</div>
+                            <div class="section-title" data-i18n="regulation_compliance">Regulation &amp; Compliance</div>
+                        </div>
+                        <div class="section-meta">
+                            <span>2026-01-22</span>
+                        </div>
+                    </div>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <div>
+                                <a class="news-title" href="#">
+                                    REACH、TSCA、食品药典等法规更新示例
+                                </a>
+                                <div class="news-meta">
+                                    <span>2026-01-22</span>
+                                    <span>·</span>
+                                    <span class="news-tag" data-i18n="china">China</span>
+                                </div>
+                            </div>
+                            <div class="news-summary">
+                                示例性展示不同法域下对某类化学品的登记、限用或标签要求更新，以便法规与合规团队快速筛选重点。
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="more-link" href="#" data-i18n="more">
+                        More regulation briefs →
+                    </a>
+                </section>
+
+                <section class="section-block" id="product-focus">
+                    <div class="section-header">
+                        <div class="section-title-wrap">
+                            <div class="section-kicker" data-i18n="kicker_product">Grades · Specs · End-use</div>
+                            <div class="section-title" data-i18n="product_focus">Product Focus</div>
+                        </div>
+                        <div class="section-meta">
+                            <span>2026-01-21</span>
+                        </div>
+                    </div>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <div>
+                                <a class="news-title" href="#">
+                                    某产品新闻自动关联跳转到对应产品页示例
+                                </a>
+                                <div class="news-meta">
+                                    <span>2026-01-21</span>
+                                    <span>·</span>
+                                    <span class="news-tag" data-i18n="china">China</span>
+                                </div>
+                            </div>
+                            <div class="news-summary">
+                                展示如何将产品新闻与数据库中的规格、牌号、应用场景联动，为采购与销售场景提供落地入口。
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="more-link" href="#" data-i18n="more">
+                        More product stories →
+                    </a>
+                </section>
+
+                <section class="section-block" id="weekly-digest">
+                    <div class="section-header">
+                        <div class="section-title-wrap">
+                            <div class="section-kicker" data-i18n="kicker_digest">Cross-section recap</div>
+                            <div class="section-title" data-i18n="weekly_digest">Weekly Digest</div>
+                        </div>
+                        <div class="section-meta">
+                            <span>Week of 2026-01-20</span>
+                        </div>
+                    </div>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <div>
+                                <a class="news-title" href="#">
+                                    本周各栏目要闻速览...
+                                </a>
+                                <div class="news-meta">
+                                    <span>2026-01-20</span>
+                                    <span>·</span>
+                                    <span class="news-tag" data-i18n="global">Global</span>
+                                </div>
+                            </div>
+                            <div class="news-summary">
+                                聚合本周主要装置、价格、运价与监管要点，帮助读者在 3 分钟内回顾化工与材料产业链关键变化。
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="more-link" href="#" data-i18n="more">
+                        Browse past digests →
+                    </a>
+                </section>
+            </main>
+
+            <!-- Right sidebar -->
+            <aside class="sidebar" aria-label="Highlights">
+                <div class="sidebar-card">
+                    <div class="sidebar-card-header">
+                        <div class="sidebar-title" data-i18n="sidebar_brief">Editors’ picks</div>
+                        <div class="sidebar-tag" data-i18n="sidebar_today">Today</div>
+                    </div>
+                    <ul class="sidebar-list">
+                        <li class="sidebar-item">
+                            <a href="#market-insight" class="sidebar-link">
+                                价差与库存信号：某芳烃链短评示例
+                            </a>
+                            <div class="sidebar-meta">
+                                <span>Market Insight · 2026-01-25</span>
+                            </div>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#company-watch" class="sidebar-link">
+                                龙头企业产能规划与资本开支节奏示例
+                            </a>
+                            <div class="sidebar-meta">
+                                <span>Company Watch · 2026-01-24</span>
+                            </div>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#supply-chain" class="sidebar-link">
+                                港口与运价扰动对现货策略的启示示例
+                            </a>
+                            <div class="sidebar-meta">
+                                <span>Supply Chain · 2026-01-23</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-card-header">
+                        <div class="sidebar-title" data-i18n="sidebar_reg">Regulation radar</div>
+                        <div class="sidebar-tag" data-i18n="sidebar_outlook">Outlook</div>
+                    </div>
+                    <ul class="sidebar-list">
+                        <li class="sidebar-item">
+                            <a href="#regulation-compliance" class="sidebar-link">
+                                某类化学品在多法域的合规进度示例
+                            </a>
+                            <div class="sidebar-meta">
+                                <span>REACH · TSCA · 2026-01-22</span>
+                            </div>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#product-focus" class="sidebar-link">
+                                从药典更新看终端质量标准收紧示例
+                            </a>
+                            <div class="sidebar-meta">
+                                <span>Pharmacopeia · 2026-01-21</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                © 2026 Synverta. <span data-i18n="footer_rights">All rights reserved.</span>
+            </div>
+            <div>
+                <a href="#" data-i18n="footer_terms">Terms</a> ·
+                <a href="#" data-i18n="footer_privacy">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {};
+        let currentLanguage = localStorage.getItem('language') || 'en';
+
+        async function loadLanguage(lang) {
+            try {
+                const response = await fetch(`./lang/${lang}.json`);
+                const data = await response.json();
+                translations[lang] = data;
+                return data;
+            } catch (error) {
+                console.error(`Failed to load language ${lang}:`, error);
+                return {};
+            }
+        }
+
+        function updatePageLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            localStorage.setItem('language', lang);
+            currentLanguage = lang;
+        }
+
+        async function init() {
+            await loadLanguage('en');
+            await loadLanguage('zh');
+
+            updatePageLanguage(currentLanguage);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    updatePageLanguage(lang);
+                });
+            });
+
+            // simple filter state (UI only for now)
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+
+            const resetBtn = document.querySelector('.filter-reset');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('selected'));
+                    const allBtn = document.querySelector('.filter-btn[data-i18n="all"]');
+                    if (allBtn) allBtn.classList.add('selected');
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
