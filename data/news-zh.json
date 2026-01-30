@@ -1,5 +1,15 @@
 [
   {
+    "id": "2026-01-29-tencent-news",
+    "title": "行业快讯：化工产业最新动态",
+    "category": "industry",
+    "date": "2026-01-29",
+    "summary": "转载自腾讯新闻的化工行业最新动态报道，关注产业转型升级、绿色发展和市场趋势。",
+    "url": "/news/2026-01-29-tencent-news-zh.html",
+    "tags": ["化工", "行业动态", "产业资讯"],
+    "featured": false
+  },
+  {
     "id": "2026-01-20-industry-report",
     "title": "化工装置开工率及产能扩张分析报告",
     "category": "industry",
