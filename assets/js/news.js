@@ -149,18 +149,21 @@ async function initHomepage() {
     const featuredEmptyMsg = lang === 'en' ? 'No featured news yet.' : '暂无焦点新闻。';
     renderNewsList('featured-news-list', featured, featuredEmptyMsg);
 
-    // Render latest 3 items for each category
-    const categories = {
-        'industry': 'home-industry-news-list',
-        'product': 'home-product-news-list',
-        'company': 'home-company-news-list'
-    };
+    // Map navigation categories to news data categories
+    // Navigation categories: breaking-news, market-insights, supply-chain-analysis
+    // Data categories: industry, product, company
+    // For now, we'll show industry news for all three categories
+    const categoryMappings = [
+        { navId: 'home-breaking-news-list', dataCategory: 'industry' },
+        { navId: 'home-market-insights-list', dataCategory: 'industry' },
+        { navId: 'home-supply-chain-analysis-list', dataCategory: 'industry' }
+    ];
 
-    for (const [category, containerId] of Object.entries(categories)) {
+    for (const { navId, dataCategory } of categoryMappings) {
         const categoryItems = sortedNews
-            .filter(item => item.category === category)
+            .filter(item => item.category === dataCategory)
             .slice(0, 3);
-        renderNewsList(containerId, categoryItems);
+        renderNewsList(navId, categoryItems);
     }
 }
 
@@ -181,15 +184,37 @@ async function initIndustryNewsPage() {
 }
 
 /**
+ * Initialize news for category pages
+ * Shows all news items since we currently only have industry category
+ */
+async function initCategoryPage() {
+    const newsItems = await fetchNews();
+    if (!newsItems || newsItems.length === 0) {
+        console.warn('No news items available');
+        return;
+    }
+
+    const lang = getCurrentLanguage();
+    const sortedNews = sortNewsByDate(newsItems);
+    
+    // For now, show all news on category pages
+    // In future, this can be refined to show category-specific content
+    const emptyMsg = lang === 'en' ? 'No news in this category yet.' : '该栏目暂时没有新闻。';
+    renderNewsList('category-news-list', sortedNews, emptyMsg);
+}
+
+/**
  * Auto-initialize based on page
  */
 document.addEventListener('DOMContentLoaded', () => {
     // Check which page we're on based on containers present
     if (document.getElementById('latest-news-list') || 
         document.getElementById('featured-news-list') ||
-        document.getElementById('home-industry-news-list')) {
+        document.getElementById('home-breaking-news-list')) {
         initHomepage();
     } else if (document.getElementById('industry-news-list')) {
         initIndustryNewsPage();
+    } else if (document.getElementById('category-news-list')) {
+        initCategoryPage();
     }
 });
