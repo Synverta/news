@@ -50,6 +50,7 @@ header {
     border-bottom: 1px solid var(--border-subtle);
     padding: 1rem 2rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
 }
 
 .header-container {
@@ -58,6 +59,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 /* Site Header (new homepage style) */
@@ -82,12 +84,10 @@ header {
     align-items: center;
     padding: 1rem 0;
     gap: 2rem;
+    position: relative;
 }
 
 .site-header .logo {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
     text-decoration: none;
 }
 
@@ -99,15 +99,14 @@ header {
 }
 
 .site-header .logo-subtitle {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-weight: 400;
+    display: none; /* Hidden per requirement */
 }
 
 .main-nav {
     flex: 1;
     display: flex;
     justify-content: flex-end;
+    margin-right: 3rem; /* Make room for language switcher */
 }
 
 .main-nav ul {
@@ -115,8 +114,8 @@ header {
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    gap: 0.25rem;
+    flex-wrap: nowrap;
     align-items: center;
 }
 
@@ -129,8 +128,8 @@ header {
     color: var(--secondary);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
-    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.65rem;
     border-radius: 6px;
     transition: all 0.2s;
     white-space: nowrap;
@@ -144,6 +143,37 @@ header {
 .main-nav a.active {
     color: var(--accent);
     background: var(--accent-soft);
+}
+
+/* Language Switcher - Top Right Corner */
+.lang-switcher {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.lang-switcher a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 50%;
+    background: var(--bg-badge);
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.75rem;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.lang-switcher a:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    transform: scale(1.05);
 }
 
 .logo {
@@ -550,6 +580,12 @@ footer a:hover {
         gap: 1rem;
     }
 
+    .header-container .lang-switcher {
+        position: static;
+        transform: none;
+        margin-top: 0.5rem;
+    }
+
     .site-header .header-inner {
         flex-direction: column;
         gap: 1rem;
@@ -563,16 +599,24 @@ footer a:hover {
     .main-nav {
         width: 100%;
         justify-content: center;
+        margin-right: 0;
     }
 
     .main-nav ul {
         justify-content: center;
         gap: 0.25rem;
+        flex-wrap: wrap;
     }
 
     .main-nav a {
         font-size: 0.85rem;
         padding: 0.4rem 0.6rem;
+    }
+
+    .lang-switcher {
+        position: static;
+        transform: none;
+        margin-top: 0.5rem;
     }
 
     nav {
